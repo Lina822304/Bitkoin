@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)file:///D:/%D0%91%D0%B8%D1%82%D0%BA%D0%BE%D0%B8%D0%BD.html -->
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<!--ga_start--> 
+  
+<!-- Google Tag Manager -->
+<script type="text/javascript" async="" src="./Біткоін_files/analytics.js.загружено"></script><script async="" src="./Біткоін_files/gtm.js.загружено"></script><script type="text/javascript" async="" src="./Біткоін_files/js"></script><script type="text/javascript" async="" src="./Біткоін_files/analytics.js(1).загружено"></script><script type="text/javascript" async="" src="./Біткоін_files/js(1)"></script><script async="" src="./Біткоін_files/gtm.js(1).загружено"></script><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MSKPKFZ');</script>
+<!-- End Google Tag Manager -->
+
+  <!--ga_end-->
+
+ 	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="google-site-verification" content="gDgDGY0EAMNDdFIeFmBLqtl9k14o9ELcN-gjbtE2m9w">
+	
+	<meta name="msapplication-config" content="none">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	
+	<title>Купить Биткоин за Гривны с Приват24, карточки Visa, MasterCard. Выгодный Курс Биткоина. btcBank - надежный кошелек-обменник bitcoin Украины</title>
+	<meta name="keywords" content="купить биткоин, обмен биткойнов, куплю биткоины, обмен биткоин, купить биткоинов, купить биткоины, биткоин приват, биткоин Приват24, биткоин приват банк, биткоин, bitcoin, btc, обмен биткоин приват, биткоин на карточку, курс биткоинов, биржа биткоин, обменник биткоинов, биткоин обменник ">
+	<meta name="description" content="Купить биткоин за Гривны через Приват 24 (Приват24) . Обмен биткоинов (btc) с маленькой комиссией в 3 клика. Купить Bitcoin ПриватБанк - btcBank">
+
+    
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/gif" href="https://btcbank.com.ua/favicon.ico">
+
+	<script src="./Біткоін_files/jquery-3.5.1.js.загружено"></script><style type="text/css" id="operaUserStyle"></style>
+	<!--script src="/js/jquery-1.11.2.min.js"></script-->
+
+	<link href="./Біткоін_files/jquery.dataTables.min.css" rel="stylesheet">
+
+	<script src="./Біткоін_files/jquery.dataTables.min.js.загружено"></script>
+
+	<script src="./Біткоін_files/bootstrap.min.js.загружено"></script>
+	<script type="text/javascript">
+	
+	var course_buy = 40162.6296;
+	var course_sell = 35700.1152;
+	var course_buy_uah = 1554293.77;
+	var course_sell_uah = 1381594.46;
+	var course_buy_usdt_uah = 40.25;
+	var course_sell_usdt_uah = 37.96;
+	var course_buy_rur = 2409757.78;
+	var course_sell_rur = 2142006.91;
+	var io_comission = 0.04;
+
+	var count_unprocessed_payment = 0 + 0;
+
+		var p2p_ios;
+		var audio_clock = null;
+
+	function updateCourseFromServer() {
+		$.get( "/json_data.php", function( data ) {
+			course_buy = data.course_buy;
+			course_sell = data.course_sell;
+
+			
+						if ( typeof(data.count_unprocessed_payment)!="undefined" && data.count_unprocessed_payment!==null && data.count_unprocessed_payment!=count_unprocessed_payment )
+				location.reload();
+
+			
+						if (typeof(data.p2p_ios)!="undefined" && data.p2p_ios!==null &&
+				typeof(p2p_ios)!="undefined" && p2p_ios!==null ) {
+
+				const alertKey = 'play_once_' + data.p2p_ios.unic_str;
+
+				if ((p2p_ios.out_lot_status == 0 && data.p2p_ios.out_lot_status == 1) ||
+					(p2p_ios.out_lot_status == 2 && data.p2p_ios.out_lot_status == 3) ||
+					(p2p_ios.in_lot_status == 1 && data.p2p_ios.in_lot_status == 2) ||
+					p2p_ios.last_lot_4req < data.p2p_ios.last_lot_4req
+					) {
+
+					if (!localStorage.getItem(alertKey)) {
+						console.log('clock_start '+alertKey);
+						localStorage.setItem(alertKey, true);
+						audio_clock = new Audio('/img/clock.mp3')
+						audio_clock.loop = true;
+						audio_clock.play();
+					}
+
+					let is_in = p2p_ios.last_lot_4req < data.p2p_ios.last_lot_4req || data.p2p_ios.in_lot_status == 2;
+
+					if (data.p2p_ios.out_lot_status == 1 || data.p2p_ios.out_lot_status == 3)
+						document.getElementById("img_p2p_alarm_out").style.display = '';
+					if (is_in)
+						document.getElementById("img_p2p_alarm_in").style.display = '';
+
+					$('#img_header_alarm').css('display', '');
+					$('#a_header_alarm').css('display', '');
+					$("#a_header_alarm").attr('href', is_in ? '?p=26' : '?p=27');
+				}
+
+				//console.log('check audio: '+alertKey+' '+localStorage.getItem(alertKey)+' '+audio_clock.paused);
+								if (audio_clock != null && !audio_clock.paused && !localStorage.getItem(alertKey)) {
+					console.log('clock_stop');
+					audio_clock.pause();
+				}
+
+			}
+
+			p2p_ios = data.p2p_ios; 
+			document.getElementById("course_buy_uah").innerHTML = data.course_buy_uah;
+			document.getElementById("course_sell_uah").innerHTML = data.course_sell_uah;
+		}, "json" );
+	}
+	setInterval(updateCourseFromServer, 10000);
+
+	</script>
+
+	<link href="./Біткоін_files/bootstrap.css" rel="stylesheet">
+	<link href="./Біткоін_files/additional.css" rel="stylesheet">
+
+<style>
+body {padding-top: 0;
+	background: #E5E5E5 url("/img/background-image") repeat scroll 0% 0%;
+    background-color: #E5E5E5;
+    background-image: url("/img/background-image.png");
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    background-clip: border-box;
+    background-origin: padding-box;
+    background-size: auto auto;
+}
+.container {width: 970px;}
+.__navbar-header,
+.__navbar-header p,
+.navbar-top .form-group {float: left;}
+.navbar-top .navbar-collapse {width: 580px; margin: 0; border: 0; float: right;}
+.navbar-top .navbar-collapse input,
+.navbar-top .navbar-collapse button,
+.navbar-top .navbar-collapse a {font-size:11px; height:29px; padding:0px 12px;}
+.navbar-top .navbar-collapse a {padding:6px 12px;}
+.navbar-top .navbar-collapse form {width: 580px; margin-top:4px;}
+.navbar-top form{padding: 6px 0 0 6px; margin:0;}
+.navbar-top .form-group { padding-right: 4px;}
+</style>
+
+<!-- else -->
+
+
+
+  <meta http-equiv="origin-trial" content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><script type="text/javascript" async="" src="./Біткоін_files/f.txt"></script><meta http-equiv="origin-trial" content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><script type="text/javascript" async="" src="./Біткоін_files/f(1).txt"></script></head>
+
+  <body style="min-width:1270px;">
+
+  <!--ga_start--> 
+  
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="./Биткоин_files/ns.html" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <!--ga_end-->
+
+			<div style="background-color: #FF5C5F; color: #FFFFFF; text-align: center; padding:2px;">
+		 <a style="color:yellow" target="_blank" href="https://btcbank.com.ua/">		</a></div><a style="color:yellow" target="_blank" href="https://btcbank.com.ua/">
+	
+    </a><div class="navbar navbar-inverse __navbar-fixed-top navbar-top" role="navigation" style="min-width:1270px; display:block; margin-bottom:0;"><a style="color:yellow" target="_blank" href="https://btcbank.com.ua/">
+      </a><div class="container" style="width: 998px"><a style="color:yellow" target="_blank" href="https://btcbank.com.ua/">
+
+
+        </a><div class="__navbar-header"><a style="color:yellow" target="_blank" href="https://btcbank.com.ua/"></a><a href="https://btcbank.com.ua/" title=" - обменять bitcoin, купить биткоин" style="font-size:20px;" class="navbar-brand"><b>btc</b></a></div>
+
+		<div class="__navbar-header" style="color: #FFA500; margin-top:16px; margin-left:25px; font-size:12px">
+			<p title="Цена продажи/покупки в гривнах за 1 bitcoin">Курс 1 BTC: <span id="course_sell_uah">1387203.67</span> грн / <span id="course_buy_uah">1560604.13</span> грн</p>
+        </div>
+        <div class="navbar-collapse" style="box-shadow: none; text-align:right;width:315px">
+			<form style="width:315px;padding-top:10px;box-shadow:none;border:0px;" class="navbar-form navbar-right" action="https://btcbank.com.ua/" method="get">
+			
+			<div class="form-group" style="color:white;padding-right:5px;float:right;">
+			<a id="a_header_alarm" href="https://btcbank.com.ua/personal.php?p=26" style="padding:0px;display:none"><img id="img_header_alarm" src="./Біткоін_files/alarm.gif" width="20" border="0" title="P2P обмен требует Вашего внимания" style="display:none"></a>
+			<a style="font-size:13px;" href="https://btcbank.com.ua/personal.php"> </a></div>
+		</form>
+	
+</div>
+      </div>
+    </div>
+  <div>
+      <div class="container">
+      
+    <table align="center" width="900" border="0">
+      <tbody><tr>        
+        <td align="left"><h1 style="font-size:30px; text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.7);">Обмінник гривні на Bitcoin</h1>
+        </td><td width="10%">
+        </td><td align="right" style="vertical-align:middle;padding:8px">
+        <br>
+			            		          <!--<a href="/bitcoin-portmone.php"><img src="/img/buttom-portmone3.png" alt=""  border="0" align="right" /></a>-->
+      </td></tr>
+    </tbody></table>
+  </div>      
+  </div>
+	 
+		<div class="table-r">
+		 
+			<script type="text/javascript">
+			var i = 0;
+			$(document).ready(function() {
+				$('#p24').bind('keyup paste change', UpdatePrices);
+				$('#btc').bind('keyup paste change', UpdatePrices);
+				$('#uah_com').bind('keyup paste change', UpdatePrices);
+			});
+			
+			function UpdatePrices() { 
+				var uah = $('#p24').val().split(',').join('.');
+				var btc = $('#btc').val().split(',').join('.');
+				var uah_com = $('#uah_com').val().split(',').join('.');
+				
+				var znak_com = 1;
+									var course = course_buy_uah;
+								
+				if ( $(document.activeElement).is('#p24')){
+					$('#uah_com').val((uah/(1-znak_com*io_comission)).toFixed(2)); 
+					$('#btc').val((uah/course).toFixed(6)); 
+				} else if ( $(document.activeElement).is('#btc') ){
+					$('#p24').val((btc*course).toFixed(2)); 
+                    $('#uah_com').val((btc*course/(1-znak_com*io_comission)).toFixed(2)); 					
+				} else if ( $(document.activeElement).is('#uah_com')) {		
+					$('#p24').val((uah_com*(1-znak_com*io_comission)).toFixed(2)); 					
+                    $('#btc').val((uah_com*(1-znak_com*io_comission)/(course)).toFixed(6)); 
+				} else {
+                    $('#uah_com').val((uah/(1-znak_com*io_comission)).toFixed(2)); 
+					$('#btc').val((uah/course).toFixed(6)); 
+				}
+			}
+			setTimeout(UpdatePrices,1);
+			</script>
+		  
+			<form action="https://btcbank.com.ua/" method="post">
+			
+				
+					<div class="row" style="margin-bottom:20px;">
+						<div class="col-md-6 col-sm-6 col-xs-6" style="margin-left:240px;">
+							Для зміни напряму обміну натисніть на кнопку <a href="https://btcbank.com.ua/?buy=0">
+								<img src="file:///D:/img/button-exchange_blue2.gif" width="20" height="20" onmouseover="this.src=&#39;/img/button-exchange_blue1.gif&#39;" onmouseout="this.src=&#39;/img/button-exchange_blue2.gif&#39;">
+							</a>
+                            
+                          <div>  <a href="https://btcbank.com.ua/?buy=0"> <img src="file:///D:/img/button-exchange_blue2.gif" alt="сменить направление обмена биткоина" style="padding-top:83px; padding-left:185px; position:absolute" onmouseover="this.src=&#39;/img/button-exchange_blue1.gif&#39;" onmouseout="this.src=&#39;/img/button-exchange_blue2.gif&#39;"></a></div>
+                            
+					  </div>					
+					</div>
+					
+					<div class="row">
+						
+						<div class="col-md-4 col-md-offset-2 col-sm-4 col-sm-offset-2 col-xs-4 col-xs-offset-2" style="margin-left:110px;">
+							<h4>Відправити</h4>
+							<p style="line-height:0.5em;">&nbsp;</p>
+							  
+							<img src="./Біткоін_files/privat24-2.png" alt="Приват24, Виза, МастерКард обменять" width="70" style=" margin-top:-10px; vertical-align:middle; padding:5px;" border="0" align="left">
+							<div class="input-group input-group-lg" style="max-width:220px;">					
+								<input id="p24" name="p24" type="text" class="form-control" value="5000" style="border-left:none;" autocomplete="off">
+								<span class="input-group-addon">грн.</span>
+							</div>
+						</div>
+
+
+						<div class="col-md-5 col-sm-5 col-xs-5" style="margin-left:80px;">
+							<h4>Отримати</h4>
+							<p style="line-height:0.5em;">&nbsp;</p>
+							<img src="./Біткоін_files/btc-logo.png" alt="купить, продать биткоин" width="70" style="padding:5px; margin-top:-10px; vertical-align:middle;" border="0" align="left">
+							<div class="input-group input-group-lg" style="max-width:210px;">
+								<input id="btc" name="btc" type="text" class="form-control" value="0.1000" autocomplete="off">
+								<span class="input-group-addon">BTC *</span>
+							</div>					
+						</div>					
+					</div>
+					
+					<div class="row" style="margin-top:20px;display:none;">
+												<div class="col-md-2 col-md-offset-1 col-sm-2 col-sm-offset-1 col-xs-2 col-xs-offset-1" style="font-size:11px; padding-top:7px; width:170px; text-align:right; padding-right:0px;">К оплате с комиссией (4%)</div>
+						
+						<div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:10px; font-size:10px; padding-right:90px;max-width:220px;">
+							<div class="input-group input-group-sm" cla-ss="input-group-commis">
+							  <input type="text" id="uah_com" name="uah_com" class="form-control" value="1040.0" autocomplete="off">
+							  <span class="input-group-addon">грн.</span>
+							</div>
+						</div>
+					</div>
+					<div class="row" style="margin-top:50px;">
+						<div class="col-md-5 col-md-offset-4 col-sm-5 col-sm-offset-4 col-xs-5 col-xs-offset-4">
+						<input type="submit" class="btn btn-lg btn-succes" value="Обміняти ГРН на BTC »" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Гл Кнопка обменяти ВТС&#39;, &#39;click&#39;, &#39;Головна&#39;); return true;" style="width:250px; text-shadow: 0 -1px 1px rgba(72,72,72,0.5);" id="maine_but_ex">
+						</div> 
+					</div>					
+				
+							</form>
+            <br>
+		</div>
+        
+<table width="880" border="0" align="center">
+	<tbody><tr>
+		
+	</tr>
+</tbody></table>
+		
+<div class="cp_vazno" style="width:840px;" align="justify">          
+  <p><strong style="color:#105cc9">Visa</strong> или <strong style="color:#ca2836">MasterCard</strong><strong style="color:#060">ПриватБанк</strong>, <strong style="color: #000000">МоноБанк</strong></p>
+</div>
+
+    
+<p><br></p>
+    <p></p>
+
+<div class="text1">
+
+<table id="table_main_block" align="center" width="900" border="0">
+	<tbody><tr>
+		<td align="center" width="150"><img src="./Біткоін_files/main_block_icon_1_1.png" height="50"><br><br><b></b></td><td align="center" width="150"><img src="./Біткоін_files/main_block_icon_1_2.png" height="50"><br><br><br><br></td><td align="center" width="150"><img src="./Біткоін_files/main_block_icon_1_3.png" height="50"><br><br><br><br></td><td align="center"><img src="./Біткоін_files/main_block_icon_1_4.png" alt="обменять биткоин через карточку Виза, МастерКард, ПриватБанк, Приват24" style="padding-right:30px;">
+	</td></tr><tr>
+</tr></tbody></table>
+
+	<table align="center" width="900px" border="0">
+		<tbody><tr>
+			<td colspan="3"><h2 style="text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.7);font-size:24px;"></h2></td>
+		</tr> 
+		<tr>
+			<td></td>
+			<td width="20">&nbsp;</td>
+			<td align="justify" valign="top">
+				<strong></strong><br><br></td>
+		</tr>		
+	</tbody></table>
+ 
+	<br>
+ 
+	<table id="table_main_block2" align="center" width="900" border="0">
+		<tbody><tr>
+			<td colspan="7">
+				
+				<p>.
+		</p></td></tr>
+		
+		
+	</tbody></table>
+	
+	<br>
+
+	<table align="center" width="900px" border="0">
+	  <tbody><tr>
+		<td colspan="2"><h2 style="text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.7);font-size:24px;">Що таке Біткоіни?</h2></td>
+				<td rowspan="2"><br><p align="center"><iframe width="460" height="258" src="./Біткоін_files/1dRa_nN6AjI.html" frameborder="0" allowfullscreen=""></iframe></p></td>
+			  </tr> 
+	  <tr>
+		<td align="justify" valign="top">
+			<strong>Bitcoin</strong> - це унікальний феномен у світі грошей. Зараз грошова політика не залежить від особистих інтересів окремих груп, що стоять за грошовими печатними верстатами. Емісія біткоіна проста, прозора і передбачувана. Біткоіні, які належать Вам, не можуть бути вилучені  ким-небудь без физичного доступу до вашого гаманця. Це по-справжньому вільна цифрова валюта, яка не підлягає інфляції в наслідок запрограмованої обмеженості своеї емісії.		</td>
+		<td width="20">&nbsp;</td>
+	  </tr>
+	</tbody></table>
+
+	<br>
+	<br>
+	
+	<table width="900" border="0" align="center">
+	  <tbody><tr>
+		
+		<td width="40">&nbsp;</td>
+		<td></td>
+	  </tr>
+	</tbody></table>
+
+	<br>
+	<table width="900" align="center" border="0">
+		<tbody><tr>   
+			
+			<td colspan="5">&nbsp;<hr style="border-top: 1px solid #D5D5D5;"> </td>
+		</tr>
+		<tr>   
+			</tr>
+	</tbody></table>
+    
+	<br>
+	<table width="900" align="center" border="0">
+		<tbody><tr>   
+			<td colspan="2" style="line-height: 25px;">
+				  
+				
+				
+				
+	    </td></tr>
+	</tbody></table>   
+
+</div>
+
+<br>
+<br>
+  <footer>
+  
+	<table width="900" align="center" border="0">
+	   <tbody><tr>   
+	   
+		     
+		<td colspan="5">&nbsp;<hr style="border-top: 1px solid #D5D5D5;"></td>
+	  </tr>
+	  
+	<tr>   
+		<td>&nbsp;</td>
+		
+		<td width="291">
+		
+									 
+			
+						
+				<br>
+					</td>
+		<td width="38">&nbsp;</td>
+		</tr>  
+	</tbody></table>
+     <p>&nbsp;</p>
+    
+<div style=" background-color: #E1E8E6; border:solid 1px #cccccc; box-shadow: #cccccc inset;">
+	 
+	  <p></p>
+	<table align="center" width="900" border="0">
+		<tbody><tr>
+			<td width="490">
+			  
+			  
+				
+			</td>
+			<td>&nbsp;</td>
+			<td width="10">&nbsp;</td>
+			<td width="400" align="right" style="font-size:12px; line-height:11px"> <!-- <h3>Условия обмена</h3>-->
+								
+							
+				
+			</td>
+		</tr>
+	</tbody></table>
+	
+ 
+
+
+
+<!-- fo2; execution: 0.014542102813721 sec -->
+  </div></footer>
+
+
+<table style="background-color:#222" width="100%" height="5px">
+  <tbody><tr>
+    <td>&nbsp;</td>
+  </tr>
+</tbody></table>
+</body></html>
