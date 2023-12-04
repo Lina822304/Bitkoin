@@ -1,0 +1,176 @@
+#banner-right {
+    background: url(/img/by-sell-bitcoin.jpg) no-repeat #00A3CC;
+	height: 200px;
+    width: 200px;
+    position: fixed;
+    right: -200px;
+    top: 400px;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px 0 #aaa;
+}
+	
+.table-r {
+-moz-border-radius: 10px; /* Firefox */
+-webkit-border-radius: 10px; /* Safari and Chrome */
+-khtml-border-radius: 10px; /* Linux browsers */
+border-radius: 10px; /* Opera 10.50, IE and CSS3 */
+margin:0 auto;
+background-color: #0984B0; 
+color: #FFF; 
+padding:5px; 
+width:900px;
+b-ox-shadow: 1px 1px 1px #069 inset;
+bo-rder-radius: 3px;
+border: 1px solid  #069; 
+padding-left:20px;
+}
+
+
+.table-usd {
+-moz-border-radius: 10px; /* Firefox */
+-webkit-border-radius: 10px; /* Safari and Chrome */
+-khtml-border-radius: 10px; /* Linux browsers */
+border-radius: 10px; /* Opera 10.50, IE and CSS3 */
+margin:0 auto;
+background-color: #099; 
+color: #FFF; 
+padding:10px; 
+width:900px;
+b-ox-shadow: 1px 1px 1px #069 inset;
+bor-der-radius: 3px;
+border: 1px solid  #360; 
+padding-left:30px;
+}
+
+.table-usd  a{
+color:#336600;
+text-decoration: underline;
+}
+
+
+.input-group-commis{
+border-top-right-radius: 0;
+border-bottom-right-radius: 0;
+font-size: 0.5em;
+display:table; 
+border-collapse: separate;
+width:70%;
+float:right;
+padding-right:10px;
+}
+
+.div-portmone
+{
+-moz-border-radius: 10px; /* Firefox */
+-webkit-border-radius: 10px; /* Safari and Chrome */
+-khtml-border-radius: 10px; /* Linux browsers */
+border-radius: 10px; /* Opera 10.50, IE and CSS3 */
+margin:0 auto;
+background-color: #009999; 
+color: #FFF; 
+padding:10px; 
+width:900px;
+b-ox-shadow: 1px 1px 1px #069 inset;
+bor-der-radius: 3px;
+border: 1px solid  #360; 
+}
+
+
+div.cp_ok {
+    border: 1px solid #6C6;
+    color: #276630;	
+	width: 800px;
+    margin: 5px 0px;
+    padding: 15px 10px 15px 50px;
+    background-color: #EDF8EE;
+    background-repeat: no-repeat;
+    background-image: url("/img/buttom-ok.png");
+    background-position: 10px 10px;
+    box-shadow: 1px 1px 1px #FFF inset;
+    border-radius: 3px;
+}
+
+div.cp_vazno {
+	 
+	border: 1px solid #C9C9C9; 
+	background-color:#EFEFEF;
+	padding: 15px 10px 10px 65px;
+	line-height:20px; 
+	font-size:13px; 
+	width:60%; 
+	margin:0 auto;
+	margin-top:15px; 
+	padding-right:35px;
+	te-xt-align:justify;
+ 	background-repeat: no-repeat;
+    background-image: url("/img/icon-vosklic-znak.png");
+	background-position: 15px 15px;
+	box-shadow: 1px 1px 1px #FFF inset;
+    border-radius: 3px;
+	background-size: 35px;
+}
+
+div.text1
+ {
+    line-height: 25px;
+    font-size: 15px;
+    text-align: justify;
+}
+
+
+
+.btn-succes {
+  color: #fff;   
+  width:200px; 
+  border-color:#666; 
+  background-color: #E5C20B;
+
+}
+.btn-succes:hover,
+.btn-succes:focus
+{
+  color: #fff;
+  background-color: #F90;
+  border-color: #398439;
+}
+
+
+.btn-info2
+{
+	border-color: #FC0; background-color:#F90; width:140px; color: #FFF;
+}
+	
+.btn-info2:hover,
+.btn-info2:focus
+{
+	border-color: #BB5E00; color: #FFF;
+}
+
+
+#table_main_block {
+	border-spacing: 15px;
+	border-collapse: separate;
+	font-size: 14px;
+	line-height: 19px;
+	text-align: justify;
+}
+
+#table_main_block2{
+	border-spacing: 5px;
+	border-collapse: separate;
+	font-size: 14px;
+	line-height: 19px;
+	text-align: justify;
+}
+
+.td_block_table_small {
+	padding:10px;
+	text-align:left;
+	font-size: 12px;
+	line-height: 16px;
+}
+
+.img_block_main {
+	padding-top:44px;
+	padding-bottom: 10px;
+}
